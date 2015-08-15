@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="geo.js"></script>
+</head>
+<body>
+
+	<div data-role="header">
+		<h1>Geotag something!</h1>
+	</div>
+	<div id="geoPage" data-role="content">
+
+		<div data-role="fieldcontain">
+			<label for="name">Name:</label> <input type="text" name="name"
+				id="name" value="" />
+		</div>
+
+		<div data-role="fieldcontain">
+			<label for="latitude">Latitude:</label> <input type="text"
+				name="latitude" id="latitude" value="" />
+		</div>
+		<div data-role="fieldcontain">
+			<label for="longitude">Longitude:</label> <input type="text"
+				name="longitude" id="longitude" value="" />
+		</div>
+
+		<div data-role="fieldcontain">
+			<label for="accuracy">Accuracy:</label> <input type="text"
+				name="accuracy" id="accuracy" value="" />
+		</div>
+
+		<div data-role="fieldcontain">
+			<label for="timestamp">Timestamp:</label> <input type="text"
+				name="timestamp" id="timestamp" value="" />
+		</div>
+
+		<div data-role="fieldcontain">
+			<input type="button" onclick="getLocation()" name="locate"
+				value="Get coordinates" />
+		</div>
+
+		<div data-role="fieldcontain">
+			<input type="button" onclick="addGeoTag()" name="submit" value="Send"
+				id="submit" disabled />
+		</div>
+	</div>
+</body>
+</html>
