@@ -13,7 +13,7 @@ function addGeoTag() {
 				accuracy : $('#accuracy').val(),
 				timestamp : $('#timestamp').val(),
 				valid : true,
-				name : $('#name')[0].value,
+				name : $('#name')val(),
 				createdBy : data.ip
 			};
 		
