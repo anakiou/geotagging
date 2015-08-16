@@ -1,38 +1,30 @@
-var clientIp = "NONE";
-
 $(document).on("pageinit", function() {
     
     $("#name").keyup(function(){
     checkEnableSubmit();
+    });
 });
 
-	$.getJSON("http://jsonip.com/?callback=?", function(data) {
-		console.log(data);
-		clientIp = data.ip;
+function addGeoTag() {	
+	$.getJSON("http://jsonip.com/?callback=?", function(data) {		
+		var geotag = {
+				latitude : $('#latitude').val(),
+				longitude : $('#longitude').val(),
+				accuracy : $('#accuracy').val(),
+				timestamp : $('#timestamp').val(),
+				valid : true,
+				name : $('#name')[0].value,
+				createdBy : data.ip
+			};
+		
+		clearInputs();	
+		
+		$.ajax("/tags", {
+			data : JSON.stringify(geotag),
+			contentType : 'application/json',
+			type : 'POST'
+		});
 	});
-});
-
-function addGeoTag() {
-	console.log("Adding geotag");
-
-	var taggedDevice = {
-		latitude : $('#latitude')[0].value,
-		longitude : $('#longitude')[0].value,
-		accuracy : $('#accuracy')[0].value,
-		timestamp : $('#timestamp')[0].value,
-		valid : true,
-		name : $('#name')[0].value,
-		createdBy : clientIp
-	};
-
-	clearInputs();
-
-	$.ajax("/tags", {
-		data : JSON.stringify(taggedDevice),
-		contentType : 'application/json',
-		type : 'POST'
-	});
-
 }
 
 function getLocation() {
@@ -58,12 +50,11 @@ function showPosition(position) {
 }
 
 function checkEnableSubmit() {
-	var name = $('#name')[0].value;
-	var lon = $('#longitude')[0].value;
-	var lat = $('#latitude')[0].value;
-	var acc = $('#accuracy')[0].value;
-	var tm = $('#timestamp')[0].value;
-	var btnSubmit = $('#submit')[0];
+	var name = $('#name').val();
+	var lon = $('#longitude').val();
+	var lat = $('#latitude').val();
+	var acc = $('#accuracy').val();
+	var tm = $('#timestamp').val();
 
 	if (name && lon && lat && acc && tm) {
 		$('#submit').button('enable');
